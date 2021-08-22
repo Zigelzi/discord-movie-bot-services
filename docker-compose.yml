@@ -9,10 +9,12 @@ services:
     ports:
       - 5000:5000
     env_file:
-      - ./.env.dev
+      - ./envs/.env.dev
   bot:
     build: ./services/discord_bot
     command: python bot.py
+    volumes:
+      - ./services/discord_bot/:/usr/src/app/
   db:
     image: postgres:13-alpine
     volumes:
